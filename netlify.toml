@@ -1,12 +1,12 @@
 [[headers]]
 for = "/*"
     [headers.values]
-          base-uri = 'self';
-          connect-src = 'self';
-          default-src = 'self';
-          frame-ancestors = 'none';
-          font-src = 'self' stackpath.bootstrapcdn.com;
-          img-src = 'self';
-          object-src = 'none';
-          script-src = 'self';
-          style-src = 'self' stackpath.bootstrapcdn.com;
+          base-uri = 'self'
+          connect-src = 'self'
+          default-src = 'self'
+          frame-ancestors = 'none'
+          font-src = 'self' stackpath.bootstrapcdn.com
+          img-src = 'self'
+          object-src = 'none'
+          script-src = 'self'
+          style-src = 'self' stackpath.bootstrapcdn.com
