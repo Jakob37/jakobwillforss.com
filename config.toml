@@ -74,3 +74,15 @@ url = "mailto:jakob.willforss@hotmail.com"
   weight = 300
   identifier = "about"
   url = "/about/"
+
+  [[menu.main]]
+  name = "Projects"
+  weight = 300
+  identifier = "projects"
+  url = "/projects/"
+  
+  [[menu.main]]
+  name = "Teaching"
+  weight = 300
+  identifier = "teaching"
+  url = "/teaching/"
