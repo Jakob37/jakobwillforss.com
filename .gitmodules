@@ -1,3 +1,6 @@
 [submodule "https:/github.com/lxndrblz/anatole"]
 	path = https:/github.com/lxndrblz/anatole
 	url = ./themes/anatole
+[submodule "themes/anatole"]
+	path = themes/anatole
+	url = https://github.com/lxndrblz/anatole.git
