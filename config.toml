@@ -18,7 +18,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [params]
 title = "Hi! I'm Jakob"
 author = "Jakob Willforss"
-description = "I think about R, bioinformatics, everyday optimization and data intuition for data"
+description = "I think about R, bioinformatics, everyday optimization and data intuition"
 profilePicture = "images/profile.jpg"
 keywords = ""
 favicon = "favicons/"
