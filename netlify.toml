@@ -10,3 +10,9 @@
   for = "/*"
     [headers.values]
     Access-Control-Allow-Origin = "*"
+
+[context.production.environment]
+HUGO_VERSION = "v0.74.2"
+HUGO_ENV = "production"
+HUGO_ENABLEGITINFO = "true"
+
