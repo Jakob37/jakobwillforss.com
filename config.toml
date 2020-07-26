@@ -1,4 +1,5 @@
-baseURL = "https://gifted-ride-ea6b61.netlify.app/"
+baseURL = "www.jakobwillforss.com"
+# baseURL = "https://gifted-ride-ea6b61.netlify.app/"
 languageCode = "en"
 DefaultContentLanguage = "en"
 title = "Website of Jakob"
