@@ -10,6 +10,8 @@
   for = "/*"
     [headers.values]
     Content-Security-Policy = "default-src 'self';"
+
+[[headers]]
   for = "/*.woff"
     [headers.values]
     Access-Control-Allow-Origin = "*"
