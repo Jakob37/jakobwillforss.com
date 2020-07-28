@@ -10,6 +10,10 @@
   for = "/*"
     [headers.values]
     Content-Security-Policy = "default-src 'self';"
+  for = "/*.woff"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Content-Type = "application/font-woff"
 
 [context.production.environment]
 HUGO_VERSION = "v0.74.2"
