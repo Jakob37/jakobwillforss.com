@@ -1,9 +1,10 @@
 +++
 title = "Projects"
 description = "Development projects I have been involved in"
-date = "2019-02-28"
+date = "2020-07-28"
 aliases = ["about-us","about-hugo","contact"]
 author = "Jakob Willforss"
 +++
 
-Projects coming in here!
+I have a range of programming interests which have touched on topics such as hackathons, Chinese study, game programming and more. I will put up a selection of projects here ahead.
+
