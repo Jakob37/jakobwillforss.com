@@ -1,0 +1,62 @@
+---
+title: Content security policy for font awesome on Netlify
+author: Jakob Willforss
+date: '2020-07-28'
+slug: content-security-policy-for-font-awesome-on-netlify
+categories:
+  - TechnicalIssues
+tags:
+  - issue
+  - netlify
+  - webdev
+Description: ''
+Tags: []
+Categories: []
+DisableComments: no
+---
+
+
+
+<p>When setting up this very web page, everything initially went smoothly, up until I ran into the issue of ‘Content Security Policy’ (CSP). This tickled my memory, but my web dev skills being a bit rusty it took some hours of screening the internet to understand how:</p>
+<ol style="list-style-type: decimal">
+<li>What the Content Security Policy is</li>
+<li>How to format content security headers for deployment on Netlify</li>
+<li>Setting up the Content Security Policy to permit external fonts</li>
+</ol>
+<p>Disclaimer: I am no web development expert, and despite working out OK, it might not be the optimal way to do things. If you spot major issues, please let me know!</p>
+<div id="the-error" class="section level1">
+<h1>The error</h1>
+<p>The errors I encountered appeared in the browser console, looking something like the following:</p>
+<pre><code>Content Security Policy: The page’s settings blocked the loading of a resource at inline (“default-src”). onloadwff.js:71:798525
+Content Security Policy: The page’s settings blocked the loading of a resource at https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css (“default-src”).</code></pre>
+<p>These are two separate errors. One is related to <em>how</em> the scripts are loaded (inline), and one due to the external scripts of the target type (in this error - CSS) was loaded.</p>
+</div>
+<div id="what-the-content-security-policy-is" class="section level1">
+<h1>What the Content Security Policy is</h1>
+<p>This is defined in much detail by <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Mozilla</a> with some very helpful examples. In brief - It is a security functionality used by the browser to control what types of contents are allowed to run on what platform. For instance - you can permit only scripts to be sourced from the server at hand. Or, you can allow external CSS-files from specific given sites.</p>
+</div>
+<div id="how-to-format-content-security-headers-for-deployment-on-netlify" class="section level1">
+<h1>How to format content security headers for deployment on Netlify</h1>
+<p>There are multiple possible methods for deployment as specified by <a href="https://docs.netlify.com/routing/headers/#syntax-for-the-headers-file">Netlify</a>. The method I used was using a <code>netlify.toml</code> configuration file placed in the base folder for the web page repository. This file is loaded when deployed by Netlify.</p>
+<p>Here, the first go at content security policy is shown below. This allows everything served from the current site to be loaded, but does not permit anything from external sites.</p>
+<pre><code>[[headers]]
+  for = &quot;/*&quot;
+    [headers.values]
+    Content-Security-Policy = &quot;default-src &#39;self&#39;&quot;</code></pre>
+<p>When running this, everything loaded well with the exception of icons from <a href="https://fontawesome.com">Font Awesome</a>, which was not loaded due to coming from an external site.</p>
+</div>
+<div id="setting-up-the-content-security-policy-to-permit-external-fonts" class="section level1">
+<h1>Setting up the Content Security Policy to permit external fonts</h1>
+<p>In order to allow reading of fonts from an external site I needed the following pieces of information.</p>
+<p>The <code>default-src</code> used for the CSP is the default fallback for any type of script. Different sub-types can be redefined, updating their target site. For instance, to extend from where JavaScript files can be loaded, the <code>script-src</code> directive can be used. Note the quotes on the ‘self’, but no quotes on the URL. By redefining the ‘self’ the JS-files can be loaded both from the own site <em>and</em> the additional site.</p>
+<pre><code>[[headers]]
+  for = &quot;/*&quot;
+    [headers.values]
+    Content-Security-Policy = &quot;default-src &#39;self&#39;; script-src &#39;self&#39; https://stackpath.bootstrapcdn.com&quot;</code></pre>
+<p>Finally, to allow loading of the Font Awesome, I needed to include both JavaScript-files (<code>script-src</code>), CSS files (<code>style-src</code>) and font sources (<code>font-src</code>). Further, in this case (as this was how it was defined by the web page theme I used), the <code>unsafe-inline</code> directive needed to be used, as the scripts were imported using inline <code>&lt;script&gt;</code> elements or similar (described further <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src">here</a> under ‘unsafe-line’).</p>
+<pre><code>[[headers]]
+  for = &quot;/*&quot;
+    [headers.values]
+    Content-Security-Policy = &quot;default-src &#39;self&#39;; script-src &#39;self&#39; &#39;unsafe-inline&#39; https://stackpath.bootstrapcdn.com; style-src &#39;self&#39; &#39;unsafe-inline&#39; https://stackpath.bootstrapcdn.com; font-src &#39;self&#39; &#39;unsafe-inline&#39; https://stackpath.bootstrapcdn.com&quot;</code></pre>
+<p>With this, things worked well!</p>
+</div>
