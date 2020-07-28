@@ -6,16 +6,9 @@
   status = 200
 
 [[headers]]
-  # Define which paths this specific [[headers]] block will cover.
   for = "/*"
     [headers.values]
-    Content-Security-Policy = "default-src 'self';"
-
-[[headers]]
-  for = "/*.woff"
-    [headers.values]
-    Access-Control-Allow-Origin = "*"
-    Content-Type = "application/font-woff"
+    Content-Security-Policy = "default-src 'self'; default-src https://stackpath.bootstrapcdn.com"
 
 [context.production.environment]
 HUGO_VERSION = "v0.74.2"
