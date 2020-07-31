@@ -86,7 +86,7 @@ The design matrix contains five columns:
 This matrix can contain an arbitrary number of columns with information regarding the different samples. Here, we'll focus on the `sample_name` column. The values here should *exactly match* columns present in the data matrix. 
 
 ```{r}
-design_df
+design_df %>% head(10)
 ```
 
 # Working with the data and the design matrices
@@ -98,13 +98,13 @@ One of the most common tasks when working with this kind of data is to retrieve 
 To retrieve the data part, we use the `select` statement to select all columns in the data matrix matching the `sample_name` column in the design table.
 
 ```{r}
-data_df %>% select(all_of(design_df$sample_name))
+data_df %>% select(all_of(design_df$sample_name)) %>% head(10) %>% select(1:7)
 ```
 
 By using the `all_of` statement, the `select` statement will through a helpful error if we miss certain columns. This is a common error, so doing this using `all_of` might save you a lot of headaches ahead.
 
 ```{r, error=TRUE}
-data_df[, 1:10] %>%  select(all_of(design_df$sample_name))
+data_df[, 1:10] %>% select(all_of(design_df$sample_name))
 ```
 
 ## Retrieving the annotation data
@@ -112,7 +112,7 @@ data_df[, 1:10] %>%  select(all_of(design_df$sample_name))
 To retrieve the annotation part, we use the `select` statement again, this time inverting it using the `-` sign. This will select all columns *not* present in the design matrix. In this case, this will correspond to only the gene column.
 
 ```{r}
-data_df %>% select(-all_of(design_df$sample_name))
+data_df %>% select(-all_of(design_df$sample_name)) %>% head(10)
 ```
 
 # Summary
