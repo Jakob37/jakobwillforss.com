@@ -1,0 +1,197 @@
+---
+title: The data- and design-matrices
+author: Jakob Willforss
+date: '2020-07-31'
+slug: the-data-and-design-matrices
+categories:
+  - R
+  - dataprocessing
+tags:
+  - omics
+---
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>I plan to write a collection of posts describing different aspects of working with expression-based omic data. This will usually be either in the form of transcriptome data (for instance, RNA-seq or arrays) or proteomics (mass spectrometry data). In both cases, an important intermediary format is the expression matrix - a table showing all involved samples as columns and all features (genes, proteins, transcripts, etc.) as rows.</p>
+</div>
+<div id="setting-things-up" class="section level1">
+<h1>Setting things up</h1>
+<div id="retrieving-the-data" class="section level2">
+<h2>Retrieving the data</h2>
+<p>As an example, I used the <code>bladderbatch</code> dataset as obtained from Bioconductor - a repository for biology-related R packages.</p>
+<p>In order to perform this, the BiocManager R package needs to be installed.</p>
+<pre class="r"><code>if (!require(&quot;bladderbatch&quot;)) {
+    if (!require(&quot;BiocManager&quot;)) {
+        install.packages(&quot;BiocManager&quot;)
+    }
+    BiocManager::install(&quot;bladderbatch&quot;)
+} else {
+    message(&quot;bladderbatch package already installed&quot;)
+}</code></pre>
+<pre><code>## Loading required package: bladderbatch</code></pre>
+<pre><code>## Loading required package: Biobase</code></pre>
+<pre><code>## Loading required package: BiocGenerics</code></pre>
+<pre><code>## Loading required package: parallel</code></pre>
+<pre><code>## 
+## Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:parallel&#39;:
+## 
+##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+##     clusterExport, clusterMap, parApply, parCapply, parLapply,
+##     parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+##     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+##     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+##     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+##     union, unique, unsplit, which, which.max, which.min</code></pre>
+<pre><code>## Welcome to Bioconductor
+## 
+##     Vignettes contain introductory material; view with
+##     &#39;browseVignettes()&#39;. To cite Bioconductor, see
+##     &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+<pre><code>## bladderbatch package already installed</code></pre>
+</div>
+<div id="loading-the-tidyverse-package" class="section level2">
+<h2>Loading the tidyverse package</h2>
+<pre class="r"><code>if (!require(tidyverse)) {
+    install.packages(&quot;tidyverse&quot;)
+} else {
+    message(&quot;The tidyverse package is already installed&quot;)
+}</code></pre>
+<pre><code>## Loading required package: tidyverse</code></pre>
+<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+## ✓ tibble  3.0.3     ✓ dplyr   1.0.0
+## ✓ tidyr   1.1.0     ✓ stringr 1.4.0
+## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::combine()    masks Biobase::combine(), BiocGenerics::combine()
+## x dplyr::filter()     masks stats::filter()
+## x dplyr::lag()        masks stats::lag()
+## x ggplot2::Position() masks BiocGenerics::Position(), base::Position()</code></pre>
+<pre><code>## The tidyverse package is already installed</code></pre>
+<pre class="r"><code>library(tidyverse)</code></pre>
+</div>
+<div id="load-the-dataset" class="section level2">
+<h2>Load the dataset</h2>
+<p>Here I follow the instructions as given by the <a href="https://www.bioconductor.org/packages/release/data/experiment/vignettes/bladderbatch/inst/doc/bladderbatch.pdf">package vignette</a>.
+The data is loaded into the namespace, and subsequently, the expression data is retrieved into the <code>data_df</code> variable and the sample conditions into the <code>design_df</code> variable.
+Finally, the received matrices (in the R <code>matrix</code> format) are converted to the <code>data.frame</code> format to make them easier to work with below, and the row names of the matrix are extracted into a column <code>gene_id</code> using the command <code>rownames_to_column</code>.</p>
+<pre class="r"><code>suppressPackageStartupMessages(library(bladderbatch))
+data(bladderdata)
+data_df &lt;- exprs(bladderEset) %&gt;% data.frame() %&gt;% rownames_to_column(&quot;gene_id&quot;)
+design_df &lt;- pData(bladderEset) %&gt;% data.frame() %&gt;% rownames_to_column(&quot;sample_name&quot;)</code></pre>
+</div>
+</div>
+<div id="inspecting-the-matrices" class="section level1">
+<h1>Inspecting the matrices</h1>
+<div id="the-data-matrix" class="section level2">
+<h2>The data matrix</h2>
+<p>The data matrix now contains one column containing the gene IDs, and the remaining columns contain gene expression measurements (most likely from the Affymetrix chip platform).</p>
+<p>There are two types of columns present. The sample columns (starting with <code>GSM...</code>) contains the actual measurements. Each column contains the measurements for all genes in that particular sample.</p>
+<p>The second type is annotation information for the genes, here only present as the <code>gene_id</code> columns specifying the ID of each gene. Additional columns here could include information such as further annotation for the genes, or technical details (transcript length, etc.).</p>
+<pre class="r"><code>data_df %&gt;% head() %&gt;% select(1:7)</code></pre>
+<pre><code>##     gene_id GSM71019.CEL GSM71020.CEL GSM71021.CEL GSM71022.CEL GSM71023.CEL
+## 1 1007_s_at    10.115170     8.628044     8.779235     9.248569    10.256841
+## 2   1053_at     5.345168     5.063598     5.113116     5.179410     5.181383
+## 3    117_at     6.348024     6.663625     6.465892     6.116422     5.980457
+## 4    121_at     8.901739     9.439977     9.540738     9.254368     8.798086
+## 5 1255_g_at     3.967672     4.466027     4.144885     4.189338     4.078509
+## 6   1294_at     7.775183     7.110154     7.248430     7.017220     7.896419
+##   GSM71024.CEL
+## 1    10.023133
+## 2     5.248418
+## 3     5.796155
+## 4     8.002870
+## 5     3.919740
+## 6     7.944676</code></pre>
+</div>
+<div id="the-design-matrix" class="section level2">
+<h2>The design matrix</h2>
+<p>The design matrix contains five columns:</p>
+<ul>
+<li>sample_name</li>
+<li>sample</li>
+<li>outcome</li>
+<li>batch</li>
+<li>cancer</li>
+</ul>
+<p>This matrix can contain an arbitrary number of columns with information regarding the different samples. Here, we’ll focus on the <code>sample_name</code> column. The values here should <em>exactly match</em> columns present in the data matrix.</p>
+<pre class="r"><code>design_df %&gt;% head(10)</code></pre>
+<pre><code>##     sample_name sample  outcome batch cancer
+## 1  GSM71019.CEL      1   Normal     3 Normal
+## 2  GSM71020.CEL      2   Normal     2 Normal
+## 3  GSM71021.CEL      3   Normal     2 Normal
+## 4  GSM71022.CEL      4   Normal     3 Normal
+## 5  GSM71023.CEL      5   Normal     3 Normal
+## 6  GSM71024.CEL      6   Normal     3 Normal
+## 7  GSM71025.CEL      7   Normal     2 Normal
+## 8  GSM71026.CEL      8   Normal     2 Normal
+## 9  GSM71028.CEL      9 sTCC+CIS     5 Cancer
+## 10 GSM71029.CEL     10 sTCC-CIS     2 Cancer</code></pre>
+</div>
+</div>
+<div id="working-with-the-data-and-the-design-matrices" class="section level1">
+<h1>Working with the data and the design matrices</h1>
+<div id="retrieving-all-sample-data-from-the-data-matrix" class="section level2">
+<h2>Retrieving all sample data from the data matrix</h2>
+<p>One of the most common tasks when working with this kind of data is to retrieve the data columns out from the full data matrix. Remember, there are two types of columns present there. In many cases, we want to separately consider the annotation, and do different calculations of visualizations specifically for the data part.</p>
+<p>To retrieve the data part, we use the <code>select</code> statement to select all columns in the data matrix matching the <code>sample_name</code> column in the design table.</p>
+<pre class="r"><code>data_df %&gt;% select(all_of(design_df$sample_name)) %&gt;% head(10) %&gt;% select(1:7)</code></pre>
+<pre><code>##    GSM71019.CEL GSM71020.CEL GSM71021.CEL GSM71022.CEL GSM71023.CEL
+## 1     10.115170     8.628044     8.779235     9.248569    10.256841
+## 2      5.345168     5.063598     5.113116     5.179410     5.181383
+## 3      6.348024     6.663625     6.465892     6.116422     5.980457
+## 4      8.901739     9.439977     9.540738     9.254368     8.798086
+## 5      3.967672     4.466027     4.144885     4.189338     4.078509
+## 6      7.775183     7.110154     7.248430     7.017220     7.896419
+## 7      5.655863     6.068074     5.822590     5.659677     5.480801
+## 8      4.855069     4.971663     4.955943     5.028884     4.838721
+## 9      4.942097     4.892139     4.991248     5.163996     5.666031
+## 10     3.638684     3.896923     4.057937     3.833727     3.675467
+##    GSM71024.CEL GSM71025.CEL
+## 1     10.023133     9.108034
+## 2      5.248418     5.252312
+## 3      5.796155     6.414849
+## 4      8.002870     9.093704
+## 5      3.919740     4.402590
+## 6      7.944676     7.469767
+## 7      5.141930     5.757393
+## 8      4.688610     5.063306
+## 9      5.635379     5.151760
+## 10     3.650139     4.044774</code></pre>
+<p>By using the <code>all_of</code> statement, the <code>select</code> statement will through a helpful error if we miss certain columns. This is a common error, so doing this using <code>all_of</code> might save you a lot of headaches ahead.</p>
+<pre class="r"><code>data_df[, 1:10] %&gt;% select(all_of(design_df$sample_name))</code></pre>
+<pre><code>## Error: Can&#39;t subset columns that don&#39;t exist.
+## [31mx[39m Columns `GSM71029.CEL`, `GSM71030.CEL`, `GSM71031.CEL`, `GSM71032.CEL`, `GSM71033.CEL`, etc. don&#39;t exist.</code></pre>
+</div>
+<div id="retrieving-the-annotation-data" class="section level2">
+<h2>Retrieving the annotation data</h2>
+<p>To retrieve the annotation part, we use the <code>select</code> statement again, this time inverting it using the <code>-</code> sign. This will select all columns <em>not</em> present in the design matrix. In this case, this will correspond to only the gene column.</p>
+<pre class="r"><code>data_df %&gt;% select(-all_of(design_df$sample_name)) %&gt;% head(10)</code></pre>
+<pre><code>##      gene_id
+## 1  1007_s_at
+## 2    1053_at
+## 3     117_at
+## 4     121_at
+## 5  1255_g_at
+## 6    1294_at
+## 7    1316_at
+## 8    1320_at
+## 9  1405_i_at
+## 10   1431_at</code></pre>
+</div>
+</div>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
+<p>We learned a standard way of organizing expression data into two matrix-files. One containing is the sample measurements and extra gene information in additional columns. The second matrix contains sample conditions, and a direct link between the two data matrices by having one column matching the sample headers.</p>
+<p>This is the format I will rely on ahead when writing future posts.</p>
+</div>

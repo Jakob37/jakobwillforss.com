@@ -1,0 +1,122 @@
+---
+title: The data- and design-matrices
+author: Jakob Willforss
+date: '2020-07-31'
+slug: the-data-and-design-matrices
+categories:
+  - R
+  - dataprocessing
+tags:
+  - omics
+---
+
+# Introduction
+
+I plan to write a collection of posts describing different aspects of working with expression-based omic data. This will usually be either in the form of transcriptome data (for instance, RNA-seq or arrays) or proteomics (mass spectrometry data). In both cases, an important intermediary format is the expression matrix - a table showing all involved samples as columns and all features (genes, proteins, transcripts, etc.) as rows.
+
+# Setting things up
+
+## Retrieving the data
+
+As an example, I used the `bladderbatch` dataset as obtained from Bioconductor - a repository for biology-related R packages.
+
+In order to perform this, the BiocManager R package needs to be installed.
+
+```{r}
+if (!require("bladderbatch")) {
+    if (!require("BiocManager")) {
+        install.packages("BiocManager")
+    }
+    BiocManager::install("bladderbatch")
+} else {
+    message("bladderbatch package already installed")
+}
+
+
+```
+
+## Loading the tidyverse package
+
+```{r}
+if (!require(tidyverse)) {
+    install.packages("tidyverse")
+} else {
+    message("The tidyverse package is already installed")
+}
+library(tidyverse)
+```
+
+## Load the dataset
+
+Here I follow the instructions as given by the [package vignette](https://www.bioconductor.org/packages/release/data/experiment/vignettes/bladderbatch/inst/doc/bladderbatch.pdf).
+The data is loaded into the namespace, and subsequently, the expression data is retrieved into the `data_df` variable and the sample conditions into the `design_df` variable.
+Finally, the received matrices (in the R `matrix` format) are converted to the `data.frame` format to make them easier to work with below, and the row names of the matrix are extracted into a column `gene_id` using the command `rownames_to_column`.
+
+```{r}
+suppressPackageStartupMessages(library(bladderbatch))
+data(bladderdata)
+data_df <- exprs(bladderEset) %>% data.frame() %>% rownames_to_column("gene_id")
+design_df <- pData(bladderEset) %>% data.frame() %>% rownames_to_column("sample_name")
+```
+
+# Inspecting the matrices
+
+## The data matrix
+
+The data matrix now contains one column containing the gene IDs, and the remaining columns contain gene expression measurements (most likely from the Affymetrix chip platform).
+
+There are two types of columns present. The sample columns (starting with `GSM...`) contains the actual measurements. Each column contains the measurements for all genes in that particular sample.
+
+The second type is annotation information for the genes, here only present as the `gene_id` columns specifying the ID of each gene. Additional columns here could include information such as further annotation for the genes, or technical details (transcript length, etc.).
+
+```{r}
+data_df %>% head() %>% select(1:7)
+```
+
+## The design matrix
+
+The design matrix contains five columns:
+
+* sample_name
+* sample
+* outcome
+* batch
+* cancer
+
+This matrix can contain an arbitrary number of columns with information regarding the different samples. Here, we'll focus on the `sample_name` column. The values here should *exactly match* columns present in the data matrix. 
+
+```{r}
+design_df %>% head(10)
+```
+
+# Working with the data and the design matrices
+
+## Retrieving all sample data from the data matrix
+
+One of the most common tasks when working with this kind of data is to retrieve the data columns out from the full data matrix. Remember, there are two types of columns present there. In many cases, we want to separately consider the annotation, and do different calculations of visualizations specifically for the data part.
+
+To retrieve the data part, we use the `select` statement to select all columns in the data matrix matching the `sample_name` column in the design table.
+
+```{r}
+data_df %>% select(all_of(design_df$sample_name)) %>% head(10) %>% select(1:7)
+```
+
+By using the `all_of` statement, the `select` statement will through a helpful error if we miss certain columns. This is a common error, so doing this using `all_of` might save you a lot of headaches ahead.
+
+```{r, error=TRUE}
+data_df[, 1:10] %>% select(all_of(design_df$sample_name))
+```
+
+## Retrieving the annotation data
+
+To retrieve the annotation part, we use the `select` statement again, this time inverting it using the `-` sign. This will select all columns *not* present in the design matrix. In this case, this will correspond to only the gene column.
+
+```{r}
+data_df %>% select(-all_of(design_df$sample_name)) %>% head(10)
+```
+
+# Summary
+
+We learned a standard way of organizing expression data into two matrix-files. One containing is the sample measurements and extra gene information in additional columns. The second matrix contains sample conditions, and a direct link between the two data matrices by having one column matching the sample headers.
+
+This is the format I will rely on ahead when writing future posts.
