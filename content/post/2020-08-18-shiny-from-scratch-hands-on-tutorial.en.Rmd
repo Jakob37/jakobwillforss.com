@@ -1,6 +1,6 @@
 ---
-title: "Shiny From Scratch - Hands on tutorial"
-author: "Jakob Willforss"
+title: Shiny From Scratch Hands on tutorial
+author: Jakob Willforss
 date: '2020-08-18'
 Tags: []
 Description: ''
@@ -67,7 +67,8 @@ In RStudio, go to `File -> New File -> Shiny Web App`, write in a name for the a
 
 This will generate a skeleton for an app. Try running it by clicking "Run app". This should start the default shiny application (looking like the image below). Try dragging the "number of bins" slider. The plot should change accordingly.
 
-![](images/default_shiny_app.png)
+
+![](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/default_shiny_app.png)
 
 There are two parts of this application - the "UI" and the "server" part. The UI is that the user interacts with, and the server calculates things in the background. 
 
@@ -77,7 +78,8 @@ The server contains the code calculating the figure and delivers it to the UI. T
 
 Here is an attempt to illustrate this.
 
-![](screenshots/ui_server.png)
+
+![](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/ui_server.png)
 
 The {shiny} app does, in principle, consist of the UI part and the server part.
 
@@ -99,7 +101,7 @@ In the default example, we saw an interactive histogram. The UI contains informa
 
 You can see it in its very minimal form in the geyser dataset. There is one input with the ID "bins". This input is used to calculate the plot which subsequently is sent to the output "distPlot".
 
-![Basic reactivity](images/basic_reactivity.svg)
+![Basic reactivity](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/basic_reactivity.svg)
 
 This is a lazy kind of evaluation - the server code will only run when it needs to. The term for this kind of programming is 'reactive programming'. More on this later.
 
@@ -226,7 +228,7 @@ ui <- fluidPage(
 server <- function(input, output) {}
 shinyApp(ui=ui, server=server)
 ```
-![](screenshots/ui1.png)
+![](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/ui1.png)
 
 You can directly inspect the HTML building the UI by printing the `ui` variable. The important point to note here is that at this point, we are simply creating HTML, just in a more convenient way. (If you are familiar with the Javascript Bootstrap library you probably recognize how {shiny} is using Bootstrap to specify rows and columns).
 
@@ -270,7 +272,7 @@ ui <- fluidPage(
 server <- function(input, output) {}
 shinyApp(ui=ui, server=server)
 ```
-![](screenshots/ui2.png)
+![](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/ui2.png)
 
 ### Exercises
 
@@ -366,7 +368,7 @@ server <- function(input, output) {
 }
 shinyApp(ui=ui, server=server)
 ```
-![](screenshots/ui3.png)
+![](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/ui3.png)
 
 ### Making our Shiny app interactive
 
@@ -376,7 +378,7 @@ By doing this, we link these parameters from the interface into the plot. RShiny
 
 This time our reactive diagram looks only slightly more complicated. We have one output point, but it depends on two different inputs. If either of these change, so will the plot.
 
-![](images/basic_year_react.svg)
+![](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/basic_year_react.svg)
 
 Try it out! Change the number of bins and title. You should directly see these changes appear in the plot.
 
@@ -417,7 +419,7 @@ server <- function(input, output) {
 }
 shinyApp(ui=ui, server=server)
 ```
-![](screenshots/ui4.png)
+![](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/ui4.png)
 
 If everything works fine, then you should be able to explore the data now! Try changing the selected year range to focus on different centuries.
 
@@ -501,11 +503,11 @@ server <- function(input, output) {
 }
 shinyApp(ui=ui, server=server)
 ```
-![](screenshots/ui5.png)
+![](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/ui5.png)
 
 Great! One ugly part here though is that we needed to duplicate the parsing part of the dataset (converting `data_long` into `data_long_filtered`). This is something we want to avoid as this kind of coding over time will make our code less maintainable and less readable. The way to do this in R Shiny is by using a reactive variable (here named `data_long_filtered`).
 
-![Dual plot reactivity](images/dual_plot_reactivity.svg)
+![Dual plot reactivity](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/dual_plot_reactivity.svg)
 
 We use the `reactive` keyword and put in an expression which here is dependent on the reactive input variables `input$countries` and `input$year_range`. This expression will be rerun every time any of these input variables change, which in turn will trigger the plots to rerender (which now both depend on this reactive element). Note that when you use this one, you need to call it with parenthesizes similar to how you use a function (i.e. `data_long_filtered()`).
 
@@ -556,7 +558,7 @@ server <- function(input, output) {
 }
 shinyApp(ui=ui, server=server)
 ```
-![](screenshots/ui6.png)
+![](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/ui6.png)
 
 Exercises
 
@@ -635,7 +637,7 @@ server <- function(input, output) {
 }
 shinyApp(ui=ui, server=server)
 ```
-![](screenshots/ui7.png)
+![](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/ui7.png)
 
 
 ## Further interactivity with Plotly
@@ -699,7 +701,7 @@ server <- function(input, output) {
 }
 shinyApp(ui=ui, server=server)
 ```
-![](screenshots/ui8.png)
+![](/post/2020-08-18-shiny-from-scratch-hands-on-tutorial.en_files/ui8.png)
 
 ## Deploying the app to shinyapps.io
 
