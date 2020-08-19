@@ -8,6 +8,8 @@ categories:
   - dataprocessing
 tags:
   - omics
+  - beginner
+  - r
 ---
 
 # Introduction

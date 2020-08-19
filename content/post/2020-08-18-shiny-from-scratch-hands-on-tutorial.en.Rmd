@@ -9,7 +9,11 @@ categories:
 - tutorial
 DisableComments: no
 slug: shiny-from-scratch-hands-on-tutorial
-tags: []
+tags: 
+- shiny
+- r
+- tutorial 
+- beginner
 Categories: []
 ---
 
