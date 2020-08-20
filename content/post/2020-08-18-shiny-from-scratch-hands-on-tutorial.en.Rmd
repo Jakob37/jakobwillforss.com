@@ -136,7 +136,7 @@ I have prepared a comma-separated Gapminder dataset on life expectancy from the 
 First, we load the comma-delimited data using the `read_csv` command. Next, we use the `head` command to inspect the first few rows.
 
 ```{r}
-data_wide <- read_csv("data/gapminder_life_expectancy_years.csv")
+data_wide <- read_csv("gapminder_life_expectancy_years.csv")
 head(data_wide)
 ```
 
@@ -175,14 +175,14 @@ data_long <- data_wide %>%
 head(data_long)
 ```
 
-## Loading the data preparsedpreparsed
+## Loading the data preparsed
 
 If you skipped the previous section - load the preparsedpreparsed data directly. This will load a three-column dataset specifying the country, measurement year and estimated life expectancy for that country and year.
 
 Load the comma-delimited file using the `read_csv` command and inspect the first few lines with `head`.
 
 ```{r}
-data_long <- read_csv("data/gapminder_life_expectancy_years_parsed.csv")
+data_long <- read_csv("gapminder_life_expectancy_years_parsed.csv")
 head(data_long)
 ```
 

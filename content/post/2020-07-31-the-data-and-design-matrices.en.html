@@ -8,6 +8,8 @@ categories:
   - dataprocessing
 tags:
   - omics
+  - beginner
+  - r
 ---
 
 
@@ -31,33 +33,41 @@ tags:
     message(&quot;bladderbatch package already installed&quot;)
 }</code></pre>
 <pre><code>## Loading required package: bladderbatch</code></pre>
-<pre><code>## Loading required package: Biobase</code></pre>
-<pre><code>## Loading required package: BiocGenerics</code></pre>
-<pre><code>## Loading required package: parallel</code></pre>
-<pre><code>## 
-## Attaching package: &#39;BiocGenerics&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:parallel&#39;:
-## 
-##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-##     clusterExport, clusterMap, parApply, parCapply, parLapply,
-##     parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     IQR, mad, sd, var, xtabs</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     anyDuplicated, append, as.data.frame, basename, cbind, colnames,
-##     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-##     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
-##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-##     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-##     union, unique, unsplit, which, which.max, which.min</code></pre>
-<pre><code>## Welcome to Bioconductor
-## 
-##     Vignettes contain introductory material; view with
-##     &#39;browseVignettes()&#39;. To cite Bioconductor, see
-##     &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
-<pre><code>## bladderbatch package already installed</code></pre>
+<pre><code>## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+## logical.return = TRUE, : there is no package called &#39;bladderbatch&#39;</code></pre>
+<pre><code>## Loading required package: BiocManager</code></pre>
+<pre><code>## Bioconductor version 3.9 (BiocManager 1.30.10), ?BiocManager::install for help</code></pre>
+<pre><code>## Bioconductor version &#39;3.9&#39; is out-of-date; the current release version &#39;3.11&#39;
+##   is available with R version &#39;4.0&#39;; see https://bioconductor.org/install</code></pre>
+<pre><code>## Bioconductor version 3.9 (BiocManager 1.30.10), R 3.6.1 (2019-07-05)</code></pre>
+<pre><code>## Installing package(s) &#39;bladderbatch&#39;</code></pre>
+<pre><code>## Installation path not writeable, unable to update packages: boot, class,
+##   KernSmooth, lattice, Matrix, mgcv, spatial</code></pre>
+<pre><code>## Old packages: &#39;admisc&#39;, &#39;anytime&#39;, &#39;ape&#39;, &#39;arm&#39;, &#39;backports&#39;, &#39;bit&#39;, &#39;bit64&#39;,
+##   &#39;brglm2&#39;, &#39;broom&#39;, &#39;calibrate&#39;, &#39;callr&#39;, &#39;car&#39;, &#39;carData&#39;, &#39;caret&#39;, &#39;chron&#39;,
+##   &#39;classInt&#39;, &#39;corrr&#39;, &#39;data.table&#39;, &#39;dbplyr&#39;, &#39;devtools&#39;, &#39;diffobj&#39;, &#39;dplyr&#39;,
+##   &#39;DT&#39;, &#39;ellipse&#39;, &#39;ellipsis&#39;, &#39;europepmc&#39;, &#39;factoextra&#39;, &#39;ff&#39;, &#39;ffbase&#39;,
+##   &#39;fit.models&#39;, &#39;foreach&#39;, &#39;forecast&#39;, &#39;fpc&#39;, &#39;fs&#39;, &#39;future&#39;, &#39;future.apply&#39;,
+##   &#39;gbm&#39;, &#39;gdtools&#39;, &#39;GGally&#39;, &#39;gganimate&#39;, &#39;ggdendro&#39;, &#39;ggforce&#39;, &#39;ggfortify&#39;,
+##   &#39;ggplot2&#39;, &#39;ggpubr&#39;, &#39;ggraph&#39;, &#39;git2r&#39;, &#39;glmnet&#39;, &#39;glue&#39;, &#39;gower&#39;, &#39;gplots&#39;,
+##   &#39;graphlayouts&#39;, &#39;gridSVG&#39;, &#39;gtools&#39;, &#39;HardyWeinberg&#39;, &#39;haven&#39;, &#39;Hmisc&#39;,
+##   &#39;htmlTable&#39;, &#39;htmltools&#39;, &#39;httpuv&#39;, &#39;httr&#39;, &#39;igraph&#39;, &#39;IRkernel&#39;, &#39;isoband&#39;,
+##   &#39;janitor&#39;, &#39;jomo&#39;, &#39;jsonlite&#39;, &#39;knitr&#39;, &#39;Lahman&#39;, &#39;later&#39;, &#39;lavaan&#39;, &#39;lme4&#39;,
+##   &#39;locfit&#39;, &#39;lpSolveAPI&#39;, &#39;lubridate&#39;, &#39;magick&#39;, &#39;maptools&#39;, &#39;MASS&#39;, &#39;MBESS&#39;,
+##   &#39;mclust&#39;, &#39;mcmc&#39;, &#39;MCMCpack&#39;, &#39;metafor&#39;, &#39;metaviz&#39;, &#39;mice&#39;, &#39;missMDA&#39;,
+##   &#39;modelr&#39;, &#39;MSnbase&#39;, &#39;multcomp&#39;, &#39;mvtnorm&#39;, &#39;mzR&#39;, &#39;ncdf4&#39;, &#39;nlme&#39;, &#39;nloptr&#39;,
+##   &#39;nnet&#39;, &#39;OpenMx&#39;, &#39;openssl&#39;, &#39;openxlsx&#39;, &#39;patchwork&#39;, &#39;pillar&#39;, &#39;pkgbuild&#39;,
+##   &#39;pkgload&#39;, &#39;pkgmaker&#39;, &#39;plotrix&#39;, &#39;PopED&#39;, &#39;pROC&#39;, &#39;processx&#39;, &#39;promises&#39;,
+##   &#39;ps&#39;, &#39;purrr&#39;, &#39;quantmod&#39;, &#39;quantreg&#39;, &#39;raster&#39;, &#39;RcmdrMisc&#39;, &#39;Rcpp&#39;,
+##   &#39;RcppArmadillo&#39;, &#39;RCurl&#39;, &#39;recipes&#39;, &#39;remotes&#39;, &#39;reshape2&#39;, &#39;reticulate&#39;,
+##   &#39;rex&#39;, &#39;rgeos&#39;, &#39;rJava&#39;, &#39;rlang&#39;, &#39;robustbase&#39;, &#39;rootSolve&#39;, &#39;roxygen2&#39;,
+##   &#39;rpf&#39;, &#39;rrcov&#39;, &#39;rstatix&#39;, &#39;rversions&#39;, &#39;rvest&#39;, &#39;scales&#39;, &#39;segmented&#39;,
+##   &#39;sem&#39;, &#39;semTools&#39;, &#39;servr&#39;, &#39;sf&#39;, &#39;shiny&#39;, &#39;shinyalert&#39;, &#39;shinycssloaders&#39;,
+##   &#39;SnowballC&#39;, &#39;sp&#39;, &#39;SQUAREM&#39;, &#39;StanHeaders&#39;, &#39;stopwords&#39;, &#39;stringdist&#39;,
+##   &#39;survival&#39;, &#39;svglite&#39;, &#39;sys&#39;, &#39;systemfonts&#39;, &#39;tibble&#39;, &#39;tidygraph&#39;, &#39;tidyr&#39;,
+##   &#39;tidyselect&#39;, &#39;tidytext&#39;, &#39;tinytex&#39;, &#39;tsibble&#39;, &#39;TSP&#39;, &#39;TTR&#39;, &#39;units&#39;,
+##   &#39;usethis&#39;, &#39;vctrs&#39;, &#39;vdiffr&#39;, &#39;VGAM&#39;, &#39;withr&#39;, &#39;writexl&#39;, &#39;xfun&#39;, &#39;xml2&#39;,
+##   &#39;yesno&#39;, &#39;zip&#39;, &#39;zoo&#39;</code></pre>
 </div>
 <div id="loading-the-tidyverse-package" class="section level2">
 <h2>Loading the tidyverse package</h2>
@@ -67,16 +77,14 @@ tags:
     message(&quot;The tidyverse package is already installed&quot;)
 }</code></pre>
 <pre><code>## Loading required package: tidyverse</code></pre>
-<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.3     ✓ dplyr   1.0.0
-## ✓ tidyr   1.1.0     ✓ stringr 1.4.0
+<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.0     ✓ purrr   0.3.3
+## ✓ tibble  2.1.3     ✓ dplyr   0.8.5
+## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
 ## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::combine()    masks Biobase::combine(), BiocGenerics::combine()
-## x dplyr::filter()     masks stats::filter()
-## x dplyr::lag()        masks stats::lag()
-## x ggplot2::Position() masks BiocGenerics::Position(), base::Position()</code></pre>
+<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre><code>## The tidyverse package is already installed</code></pre>
 <pre class="r"><code>library(tidyverse)</code></pre>
 </div>
@@ -171,7 +179,7 @@ design_df &lt;- pData(bladderEset) %&gt;% data.frame() %&gt;% rownames_to_column
 <p>By using the <code>all_of</code> statement, the <code>select</code> statement will through a helpful error if we miss certain columns. This is a common error, so doing this using <code>all_of</code> might save you a lot of headaches ahead.</p>
 <pre class="r"><code>data_df[, 1:10] %&gt;% select(all_of(design_df$sample_name))</code></pre>
 <pre><code>## Error: Can&#39;t subset columns that don&#39;t exist.
-## [31mx[39m Columns `GSM71029.CEL`, `GSM71030.CEL`, `GSM71031.CEL`, `GSM71032.CEL`, `GSM71033.CEL`, etc. don&#39;t exist.</code></pre>
+## [31mx[39m The columns `GSM71029.CEL`, `GSM71030.CEL`, `GSM71031.CEL`, `GSM71032.CEL`, `GSM71033.CEL`, etc. don&#39;t exist.</code></pre>
 </div>
 <div id="retrieving-the-annotation-data" class="section level2">
 <h2>Retrieving the annotation data</h2>
