@@ -1,8 +1,8 @@
 ---
-title: Minimal ggplot using qplot
+title: Interactive exploration of p-values and FDR
 author: Jakob Willforss
-date: '2020-07-26'
-slug: test
+date: '2020-10-01'
+slug: interactive-exploration-of-pvalues-and-fdr
 categories:
   - R
 tags:
@@ -13,10 +13,5 @@ Categories: []
 DisableComments: no
 ---
 
-Let's try out R!
+Placeholder, will appear as soon as I have figured out how to link an R-Shiny container from an external site. Come back on Sunday :)
 
-```{r}
-library(ggplot2)
-theme_set(theme_classic())
-qplot(cars$speed, cars$dist)
-```
