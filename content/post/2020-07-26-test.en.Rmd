@@ -21,5 +21,7 @@ A common tool to tackle this is the false discovery rate correction (FDR). These
 
 Here, you can explore how p-value thresholds and FDR-thresholds impact what you see in the data analysis. I illustrate this using p-value histograms, an efficient way to overview many performed tests. I demonstrate two FDR methods - the in omics commonly performed Benjamini Hochberg, and the even stricter Bonferroni correction.
 
+https://jakobshinyapps.shinyapps.io/fdr_exploration
+
 <iframe src="https://jakobshinyapps.shinyapps.io/fdr_exploration/" width="800" height="900" style="border: none;"></iframe>
 
