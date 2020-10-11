@@ -64,12 +64,7 @@ Here, we will go through the steps of adding new files to our repository. This i
 
 First, we create a Python hello-world script. You can open the file in any text editor and add the lines. The file is made from the terminal here for demonstration purposes.
 
-```{bash include=FALSE, eval=FALSE}
-echo '#!/usr/bin/env python3' > hello_python.py
-echo "print('Hello World!!')" >> hello_python.py
-```
-
-![](/post/2020-10-11-first-steps-with-git.en_files/python_edit1.png)
+![](/post/2020-10-11-first-steps-with-git.en_files/8_python_edit1.png)
 
 We can inspect how the file looks. At this point, we have created a new file on the computer. Git is not involved yet.
 
@@ -133,7 +128,7 @@ We create a new file, either as the command below or through a text editor.
 echo "This repository contains Hello-world scripts in different languages" > README.md
 ```
 
-![](/post/2020-10-11-first-steps-with-git.en_files/readme_edit1.png)
+![](/post/2020-10-11-first-steps-with-git.en_files/10_readme_edit1.png)
 
 Next, we add the second file to the stage, preparing it to be committed.
 
@@ -187,7 +182,7 @@ We update the existing Python-script by appending a second line - saying "bye".
 echo "print('That's all, bye!')" >> hello_python.py
 ```
 
-![](/post/2020-10-11-first-steps-with-git.en_files/python_edit2.png)
+![](/post/2020-10-11-first-steps-with-git.en_files/9_python_edit2.png)
 
 As before, check the status.
 
@@ -280,11 +275,11 @@ git checkout master
 
 Setup a new repository on GitHub. Give it a name, and assign it as public. Don't add the README this time! (As you already have created one.)
 
-![](/post/2020-10-11-first-steps-with-git.en_files/hellopython_repo.png)
+![](/post/2020-10-11-first-steps-with-git.en_files/6_hellopython_repo.png)
 
 You will come to a page similar to the following. Follow the instructions for 'push an existing repository from the command line'
 
-![](/post/2020-10-11-first-steps-with-git.en_files/link_to_repo.png) 
+![](/post/2020-10-11-first-steps-with-git.en_files/7_link_to_repo.png) 
 
 Note that there are two protocols for linking GitHub repositories - https and ssh. Using ssh allows you to interact with GitHub without using a password every time, but requires you to set it up properly. Instructions for this are found [here](https://jdblischak.github.io/2014-09-18-chicago/novice/git/05-sshkeys.html). Using the https protocol works well, so don't worry about it.
 
