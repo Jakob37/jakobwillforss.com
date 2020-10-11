@@ -12,7 +12,8 @@ I have a range of programming interests that have touched on topics such as hack
 
 **NormalyzerDE** is a [published](https://pubs.acs.org/doi/10.1021/acs.jproteome.8b00523) software for informed selection of normalization methods. It provides an 'evaluation report' guiding the user to select among a collection of normalization techniques. It provides a new approach to normalizing for electrospray intensity variations in the mass spectrometer. It has a built-in statistical module, which makes it easy to run the subsequent statistical step directly. It is available as a [web server](http://quantitativeproteomics.org/normalyzerde) an [R package](https://github.com/ComputationalProteomics/NormalyzerDE) and [Bioconductor package](https://bioconductor.org/packages/release/bioc/html/NormalyzerDE.html).
 
-<img src="/./projects_files/pr-2018-00523w_0007.jpeg" alt="NormalyzerDE" min-width="50%" width="50%" height="50%">
+![](/./projects_files/pr-2018-00523w_0007.jpeg){width=50px}
+<img src="/projects_files/pr-2018-00523w_0007.jpeg" alt="NormalyzerDE" width="50%"/>
 
 **OmicLoupe** is a software for rapid and comprehensive visualization of trends in omics-data. It provides interactive visualizations and introduces novel visualizations for understanding trends across multiple datasets, omics, or statistical comparisons. It is freely available as an [open-source R package](https://github.com/ComputationalProteomics/OmicLoupe) and will be submitted for publication shortly.
 

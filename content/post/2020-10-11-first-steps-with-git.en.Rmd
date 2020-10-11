@@ -36,8 +36,6 @@ If installed properly, proceed to `Creating a new repository`.
 
 If not installed, navigate to [https://git-scm.com/](https://git-scm.com/) and find the download for the system you are using. Carry through the installation.
 
-![Git main site screenshot](/post/2020-10-11-first-steps-with-git.en_files/1_git_screenshot.png)
-
 # Creating a new repository
 
 When we start a new project, we start creating a new folder (`mkdir PythonHelloProject`). At this point, `Git` is not involved - we have only made a new folder in our file tree. 
