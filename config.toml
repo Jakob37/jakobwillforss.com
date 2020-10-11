@@ -76,6 +76,12 @@ url = "https://scholar.google.com/citations?user=EbiYcocAAAAJ&hl=en&oi=ao"
   url = "/post/"
 
   [[menu.main]]
+  name = "Projects"
+  weight = 250
+  identifier = "projects"
+  url = "/projects/"
+
+  [[menu.main]]
   name = "About"
   weight = 300
   identifier = "about"
