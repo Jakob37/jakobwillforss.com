@@ -3,6 +3,7 @@ title: "First steps with Git"
 author: "Jakob Willforss"
 date: '2020-10-11'
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 Description: ''
@@ -24,7 +25,7 @@ To illustrate each step, I use the visualizations provided by the web page [Visu
 
 **NOTE: This is only required if you don't already have `git` installed on your computer. You can check this by running `git --version`. If installed properly, this should give you a version message.**
 
-```{bash eval=F}
+```
 git --version 
 ```
 
@@ -42,7 +43,7 @@ When we start a new project, we start creating a new folder (`mkdir PythonHelloP
 
 We navigate into the folder, and then initialize a new repository using the command `git init`. This action creates a hidden folder `.git` inside the `PythonHelloProject`. Now `Git` will track what is happening within this folder.
 
-```{bash results='hide', eval=FALSE}
+```
 mkdir PythonHelloProject
 cd PythonHelloProject
 git init
@@ -68,7 +69,7 @@ First, we create a Python hello-world script. You can open the file in any text 
 
 We can inspect how the file looks. At this point, we have created a new file on the computer. Git is not involved yet.
 
-```{bash eval=FALSE}
+```
 cat hello_python.py
 ```
 
@@ -79,7 +80,7 @@ cat hello_python.py
 
 We can always check with `git` what is the status of the repository. Here, we see that Git notices that there are new files added, which are not part of the current history.
 
-```{bash eval=FALSE}
+```
 git status
 ```
 
@@ -98,13 +99,13 @@ git status
 
 We add this file to the `staging area` using the command `git add`. This command is used to select what file or files to be included in the next commit.
 
-```{bash eval=FALSE}
+```
 git add hello_python.py
 ```
 
 We are ready to create a commit and make new history. 
 
-```{bash eval=FALSE}
+```
 git commit -m "first commit"
 ```
 
@@ -124,7 +125,7 @@ Secondly, we also include a README file.
 
 We create a new file, either as the command below or through a text editor.
 
-```{bash include=FALSE, eval=FALSE}
+```
 echo "This repository contains Hello-world scripts in different languages" > README.md
 ```
 
@@ -132,13 +133,13 @@ echo "This repository contains Hello-world scripts in different languages" > REA
 
 Next, we add the second file to the stage, preparing it to be committed.
 
-```{bash eval=FALSE}
+```
 git add README.md
 ```
 
 We create a second commit, including this file in the Git history.
 
-```{bash eval=FALSE}
+```
 git commit -m "Add README"
 ```
 
@@ -154,7 +155,7 @@ The repository at this stage can be illustrated in the following way. Here, the 
 
 We can inspect the history at this point using the command `git log`. Compare the output to what is shown in the figure above.
 
-```{bash eval=FALSE}
+```
 git log
 ```
 
@@ -178,7 +179,7 @@ Now we know how to add newly created files to the Git repository. Beyond this, w
 
 We update the existing Python-script by appending a second line - saying "bye".
 
-```{bash include=FALSE, eval=FALSE}
+```
 echo "print('That's all, bye!')" >> hello_python.py
 ```
 
@@ -186,7 +187,7 @@ echo "print('That's all, bye!')" >> hello_python.py
 
 As before, check the status.
 
-```{bash eval=FALSE}
+```
 git status
 ```
 
@@ -201,7 +202,7 @@ git status
 > no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-```{bash eval=FALSE}
+```
 git add hello_python.py
 ```
 
@@ -213,7 +214,7 @@ One of the powerful features of Git is that we, at any point, can go back to any
 
 By using the command `git log` we can see the history, and the commit IDs related to each step.
 
-```{r eval=FALSE}
+```
 git log
 ```
 
@@ -235,7 +236,7 @@ Using the first part of the ID is one way to access that commit (for instance `5
 
 Next, you can checkout the previous commit.
 
-```{bash eval=FALSE}
+```
 git checkout ee89d19e
 ```
 
@@ -259,7 +260,7 @@ If we check the log from here, the history looks different. This is because each
 
 At any point, we can navigate back to the latest commit by using the command `git checkout` and specifying the head of the branch (either `master` or `main`).
 
-```{bash eval=FALSE}
+```
 git checkout master
 ```
 
@@ -283,10 +284,9 @@ You will come to a page similar to the following. Follow the instructions for 'p
 
 Note that there are two protocols for linking GitHub repositories - https and ssh. Using ssh allows you to interact with GitHub without using a password every time, but requires you to set it up properly. Instructions for this are found [here](https://jdblischak.github.io/2014-09-18-chicago/novice/git/05-sshkeys.html). Using the https protocol works well, so don't worry about it.
 
-Adapt the command below accordingly - you want to add your repository as the origin, not mine!
+Adapt the command below accordingly - Replace "Jakob37" with your user and "HelloPython" with the name of your repository!
 
-```{bash eval=FALSE}
-# Replace "Jakob37" with your user and "HelloPython" with the name of your repository!
+```
 git remote add origin https://github.com/Jakob37/HelloPython.git
 git branch -M main
 git push -u origin main
