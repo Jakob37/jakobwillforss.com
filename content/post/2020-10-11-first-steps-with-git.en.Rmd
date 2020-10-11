@@ -52,11 +52,6 @@ git init
 > Initialized empty Git repository in /home/jakob/PythonHelloProject/.git/
 ```
 
-```{r include=FALSE}
-knitr::opts_knit$set(root.dir = '~/PythonHelloProject')
-knitr::opts_chunk$set(comment = '>')
-```
-
 # Creating and adding your first two files
 
 Here, we will go through the steps of adding new files to our repository. This is a three-step procedure:
