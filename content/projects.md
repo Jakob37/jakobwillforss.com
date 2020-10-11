@@ -12,11 +12,11 @@ I have a range of programming interests that have touched on topics such as hack
 
 **NormalyzerDE** is a [published](https://pubs.acs.org/doi/10.1021/acs.jproteome.8b00523) software for informed selection of normalization methods. It provides an 'evaluation report' guiding the user to select among a collection of normalization techniques. It provides a new approach to normalizing for electrospray intensity variations in the mass spectrometer. It has a built-in statistical module, which makes it easy to run the subsequent statistical step directly. It is available as a [web server](http://quantitativeproteomics.org/normalyzerde) an [R package](https://github.com/ComputationalProteomics/NormalyzerDE) and [Bioconductor package](https://bioconductor.org/packages/release/bioc/html/NormalyzerDE.html).
 
-![NormalyzerDE](/./projects_files/pr-2018-00523w_0007.jpeg)
+<img src="/./projects_files/pr-2018-00523w_0007.jpeg" alt="NormalyzerDE" width="50%"/>
 
 **OmicLoupe** is a software for rapid and comprehensive visualization of trends in omics-data. It provides interactive visualizations and introduces novel visualizations for understanding trends across multiple datasets, omics, or statistical comparisons. It is freely available as an [open-source R package](https://github.com/ComputationalProteomics/OmicLoupe) and will be submitted for publication shortly.
 
-![OmicLoupe](/./projects_files/overview_visualization.png)
+<img src="/./projects_files/overview_visualization.png" alt="OmicLoupe" width="50%"/>
 
 # Bioinformatics analysis projects
 
@@ -32,6 +32,11 @@ During my Ph.D. I have been involved in three diverse agricultural projects, eac
 
 **From Earth to Earth** is a [freely available online](https://jakob37.itch.io/from-earth-to-earth-beta) short game where a mud-man explores a rainy world searching for his Purpose. It is developed in C# and Unity. All code and assets are created by me. The source code is available [here](https://github.com/Jakob37/FromEarthToEarth).
 
-![From Earth to Earth](/./projects_files/8CpHaL.png)
+<img src="/./projects_files/8CpHaL.png" alt="From Earth to Earth" width="50%"/>
 
 **The Sun Will Go Out** is a [freely available](http://www.linkpact.com/games/tswgo/index.html) space exploration and role-playing game developed over more than two years, in a joint effort between three developers. The source code is available [here](https://github.com/LinkPact/The-Sun-Will-Go-Out).
+
+<img src="/./projects_files/18-highfence.png" alt="The Sun Will Go Out" width="50%"/> 
+
+
+
