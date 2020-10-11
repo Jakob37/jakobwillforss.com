@@ -298,7 +298,7 @@ This tutorial only provides a teaser for the functionality of Git. By putting so
 
 Some resources for further reading:
 
-* My materials
+* My Git hands-on materials, one-day workshop materials which can be used independently: [link](https://www.jakobwillforss.com/post/introduction-to-git-for-bioinformaticians/)
 * Free and interactive online tutorial to get started with Git: [link](https://www.codecademy.com/learn/learn-git)
 * Non-free, but great and comprehensive tutorial at DataCamp: [link](https://www.datacamp.com/courses/introduction-to-git-for-data-science)
 * For a deeper understanding of what goes on 'under the hood', I recommend this post: [link](https://www.sbf5.com/~cduan/technical/git)
