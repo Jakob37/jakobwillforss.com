@@ -5,6 +5,7 @@ date: '2020-10-11'
 output:
   html_document:
     df_print: paged
+  pdf_document: default
 Description: ''
 categories: []
 DisableComments: no
