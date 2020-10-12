@@ -26,7 +26,7 @@ If you have never used GitHub before, start creating a new account (picking your
 
 # Creating a new repository
 
-Next, create a new repository. After logging in, you will find a green "New" button to the left. You can navigate to this GitHub main menu by clicking the logo in the upper left corner to get to this page.
+Next, create a new repository. After logging in, you will find a green "New" button to the left. You can get to this page by clicking the logo in the upper left corner.
 
 ![Creating new repository](/post/2020-10-11-using-the-github-interface.en_files/new_repo_marked_trim.png)
 
@@ -40,11 +40,11 @@ Finally, you can optionally include the following files:
 * A .gitignore file - When working with Git on your computer, this tells Git not to keep track of certain files that you don't want to be shared (for instance, log-files)
 * A license - An important file showing other what they can and cannot do with your software
 
-In this case, I chose only to include the README file.
+In this case, I chose only to include the README file. Select a name and description which fits your repository.
 
 ![Settings for the new repository](/post/2020-10-11-using-the-github-interface.en_files/3_create_new_repo.png)
 
-After clicking "Create repository" your first repo is created! For me, I came to a page looking like the following picture.
+After clicking "Create repository" your first repo is created! For me, I came to a page looking like the screenshot shown below.
 
 Note how the README uses the description I provided to give an overview of the repository's purpose.
 
@@ -52,73 +52,80 @@ You can view it yourself on GitHub: https://github.com/Jakob37/Python2020Demo
 
 ![New repo done](/post/2020-10-11-using-the-github-interface.en_files/4_new_repo_done.png)
 
+**Exercise:** Create a GitHub account (if you not already have one) and then create a new repository.
+
 # Using a repository
 
-You now have a public repository on GitHub where you both can show off your work and access it from anywhere. Further, other people can interact with it, comment about issues and do pull requests.
+You now have a public repository on GitHub where you both can show off your work and access it from anywhere. Further, other people can interact with it, comment about issues and do pull requests (propose changes to it).
 
-Here, we will demonstrate some ways you can use the GitHub interface.
+Here, we will explore some ways you can use the GitHub interface.
 
 ## Adding new files
 
 You can upload existing files to the GitHub repository. You do this by clicking "Add file/Upload files", select the files to upload and write a commit message - a description of the changes you are making. This message will be part of the history you later can look through, so make sure to write something concise but understandable.
 
-![](/post/2020-10-11-using-the-github-interface.en_files/11_upload_file.png)
+![Uploading a file: Step 1](/post/2020-10-11-using-the-github-interface.en_files/11_upload_file.png)
 
 Click the "Commit changes" button when done with uploading and writing the commit message.
 
-![](/post/2020-10-11-using-the-github-interface.en_files/12_upload_file_2.png)
+![Uploading a file: Step 2](/post/2020-10-11-using-the-github-interface.en_files/12_upload_file_2.png)
 
 Now you should see an added file (in my case called "my_great_script.py").
 
-![](/post/2020-10-11-using-the-github-interface.en_files/13_file_uploaded.png)
+![Uploading a file: Step 3](/post/2020-10-11-using-the-github-interface.en_files/13_file_uploaded.png)
 
-Try this out for your repository - Upload an existing file from your computer to your repository!
+**Exercise:** Try this out for your repository - Upload an existing file from your computer to your repository!
 
 ## Editing existing files
 
-We can also edit existing files through the interface. By clicking the file in the main view, you will open a file specific view. Next, click the pen (on the right edge, next to the trashcan). This opens an in-browser editor. Here, you can make further edits to the file (in this case, I added another `print` statement).
+We can also edit existing files through the interface. By clicking the file in the main view, you will open a page for that file. Next, click the pen (on the right edge, next to the trashcan). This opens an in-browser editor. Here, you can make further edits to the file (in this case, I added another `print` statement).
 
-![](/post/2020-10-11-using-the-github-interface.en_files/15_history_button.png)
+![Editing an existing file: Step 1](/post/2020-10-11-using-the-github-interface.en_files/15_history_button.png)
 
-![](/post/2020-10-11-using-the-github-interface.en_files/14_edit_file_from_gui.png)
+![Editing an existing file: Step 2](/post/2020-10-11-using-the-github-interface.en_files/14_edit_file_from_gui.png)
 
 Commit it similarly to you previously did when adding a new file. Navigate back to the file to make sure it looks OK!
 
+**Exercise:** Make edits to an existing file in your repository (for instance your README). After finishing your edits, verify that the file is changed in your repository.
+
 ## Investigating the history of a file
 
-One of the key strengths of using a version control system is that you can access the history and see which changes the file has gone through. You can see this by clicking "History" (shown to the right in the file view, above the pen we previously used to edit it.).
+One of the key strengths of using a version control system (such as Git, which is the system powering GitHub) is that you can access the history and see which changes the file has gone through. You can see this by clicking "History" (shown to the right in the file view, check the previous figure "Editing an existing file: Step 1").
 
-In this case, our history consists of two commits - each representing a change made to the file. If you click it, you will see the exact changes made to the file in that commit.
+In this case, our history consists of two commits - each representing a change made to the file. 
 
-![](/post/2020-10-11-using-the-github-interface.en_files/16_check_history.png)
+![File history: Step 1](/post/2020-10-11-using-the-github-interface.en_files/16_check_history.png)
 
-![](/post/2020-10-11-using-the-github-interface.en_files/16_see_exact_changes.png)
+If you click one of the commits, you see the exact changes made to that file in that commit. Very useful when looking for bugs in your code!
 
-## Making a pull request
+![File history: Step 2](/post/2020-10-11-using-the-github-interface.en_files/16_see_exact_changes.png)
 
-If you want to propose changes to an existing repository, you do a pull request. Here, you can propose the addition of new files, or changes to existing files.
+## Making a pull request to propose changes to a repository
 
-To do this, first navigate to an existing repository. Here, I went to one of Aaron's repositories "grollup" (you can use my course repository "Python2020Demo" found [here](https://github.com/Jakob37/Python2020Demo)).
+If you want to propose changes to an existing repository, you do a pull request. Here, you can propose the addition of new files, or changes to existing files (or removal of files for that matter).
 
-![](/post/2020-10-11-using-the-github-interface.en_files/17_pull_request.png)
+To do this, first navigate to an existing repository. In the screenshots below, I went to one of Aaron's repositories "grollup" (to follow along - don't use Aaron's, use my course repository  [https://github.com/Jakob37/Python2020Demo](https://github.com/Jakob37/Python2020Demo)).
 
-Next, I added a new file (by clicking "Add file / Create new file"). Then I made the content shown below.
+![Pull request: Step 1](/post/2020-10-11-using-the-github-interface.en_files/17_pull_request.png)
 
-![](/post/2020-10-11-using-the-github-interface.en_files/18_adding_file.png)
+Next, I added a new file (by clicking "Add file / Create new file"). Then I filled in the sentence shown below.
 
-Finally, I wrote out a message similarly to when I did a commit, and clicked "Propose new file".
+![Pull request: Step 2](/post/2020-10-11-using-the-github-interface.en_files/18_adding_file.png)
 
-![](/post/2020-10-11-using-the-github-interface.en_files/19_pr_message.png)
+Finally, I wrote a descriptive message similarly to when I did a commit, and clicked "Propose new file".
 
-You will come to a page showing exactly the changes made in your proposed pull request.
+![Pull request: Step 3](/post/2020-10-11-using-the-github-interface.en_files/19_pr_message.png)
 
-![](/post/2020-10-11-using-the-github-interface.en_files/20_pr.png)
+You will come to a page showing exactly the changes made in your proposed pull request. Now is time to review to make sure you haven't made any mistakes. When satisfied, click "Create pull request".
 
-After clicking "Create pull request", you will come to a page where the pull request can be discussed. Often this will end in a back-and-forth with the owner, and adjustments to the pull request. If and when both you and the owner are satisfied, the pull request can be accepted.
+![Pull request: Step 4](/post/2020-10-11-using-the-github-interface.en_files/20_pr.png)
 
-![](/post/2020-10-11-using-the-github-interface.en_files/21_pr.png)
+After clicking "Create pull request", you will come to a page where the pull request can be discussed. Often this will end in a back-and-forth with the owner and other people interested in the repository. Further adjustments may be made to the pull request. When you and the owner are satisfied, the pull request is accepted. If not - it may be rejected (which is the likely outcome for the pull request I made to Aaron's repository!).
 
-Feel free to try out leaving an issue or creating a pull request on my repository: [https://github.com/Jakob37/Python2020Demo](https://github.com/Jakob37/Python2020Demo).
+![Pull request: Step 5](/post/2020-10-11-using-the-github-interface.en_files/21_pr.png)
+
+**Exercise:** Create a pull request on my repository: [https://github.com/Jakob37/Python2020Demo](https://github.com/Jakob37/Python2020Demo). 
+**Exercise:** You can also try leaving an issue to the same repository under the menu "Issues".
 
 # Summary
 
