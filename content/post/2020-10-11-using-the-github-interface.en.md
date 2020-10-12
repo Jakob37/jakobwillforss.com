@@ -52,7 +52,7 @@ You can view it yourself on GitHub: https://github.com/Jakob37/Python2020Demo
 
 ![New repo done](/post/2020-10-11-using-the-github-interface.en_files/4_new_repo_done.png)
 
-**Exercise:** Create a GitHub account (if you not already have one) and then create a new repository.
+**Exercise 1:** Create a GitHub account (if you not already have one) and then create a new repository.
 
 # Using a repository
 
@@ -74,7 +74,7 @@ Now you should see an added file (in my case called "my_great_script.py").
 
 ![Uploading a file: Step 3](/post/2020-10-11-using-the-github-interface.en_files/13_file_uploaded.png)
 
-**Exercise:** Try this out for your repository - Upload an existing file from your computer to your repository!
+**Exercise 2:** Try this out for your repository - Upload an existing file from your computer to your repository!
 
 ## Editing existing files
 
@@ -86,7 +86,7 @@ We can also edit existing files through the interface. By clicking the file in t
 
 Commit it similarly to you previously did when adding a new file. Navigate back to the file to make sure it looks OK!
 
-**Exercise:** Make edits to an existing file in your repository (for instance your README). After finishing your edits, verify that the file is changed in your repository.
+**Exercise 3:** Make edits to an existing file in your repository (for instance your README). After finishing your edits, verify that the file is changed in your repository.
 
 ## Investigating the history of a file
 
@@ -124,8 +124,9 @@ After clicking "Create pull request", you will come to a page where the pull req
 
 ![Pull request: Step 5](/post/2020-10-11-using-the-github-interface.en_files/21_pr.png)
 
-**Exercise:** Create a pull request on my repository: [https://github.com/Jakob37/Python2020Demo](https://github.com/Jakob37/Python2020Demo). 
-**Exercise:** You can also try leaving an issue to the same repository under the menu "Issues".
+**Exercise 4:** Create a pull request on my repository: [https://github.com/Jakob37/Python2020Demo](https://github.com/Jakob37/Python2020Demo). 
+
+**Exercise 5:** You can also try leaving an issue to the same repository under the menu "Issues".
 
 # Summary
 
