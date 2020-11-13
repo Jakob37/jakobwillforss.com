@@ -52,7 +52,7 @@ url = "https://twitter.com/JakobWil"
 [[params.socialIcons]]
 icon = "fa-envelope"
 title = "e-mail"
-url = "mailto:jakob.willforss@hotmail.com"
+url = "mailto:jakob@jakobwillforss.com"
 
 [[params.socialIcons]]
 icon = "fa-graduation-cap"
