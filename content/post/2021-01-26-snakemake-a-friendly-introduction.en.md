@@ -2,7 +2,9 @@
 title: "Snakemake - A Friendly Introduction"
 author: "Jakob Willforss"
 date: '2021-01-26'
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 Description: ''
 categories:
 - dataprocessing
@@ -187,7 +189,7 @@ Furthermore, we will run a second command used to calculate some statistics for 
 The second command takes the output from the first command as input (`output/1_fasta/21AL.A_R1.fasta`). It then is expected to produce the output file `output/2_summary/21AL.A_R1.tsv`. This is provided as the input to `rule all`, as this is the final provided output.
 
 ```
-configfile: "config.yaml"
+configfile: 'config.yaml'
 
 rule all:
     input: 'output/2_summary/21AL.A_R1.tsv'
@@ -225,6 +227,8 @@ So, we need to execute that one first.
 fect, then we are all set.
 5. Processing starts, running first rule `convert_fastq_to_fasta` and next rule `retrieve_fasta_stats`.
 
+### Configuring your analysis
+
 In addition, we included a reference to a configuration file "config.yaml". This file is located in the same folder as your snakefile, with the following content:
 
 ```
@@ -233,6 +237,8 @@ settings:
 ```
 
 This setting is now provided to the first commands option `--max_entries`, which allows us to limit the number of FASTQ-entries we use. It is a good habit to have to separate out settings we might want to change to the configuration file such that we later can avoid doing changes directly in the snakefile when we only want to change parameter values.
+
+Note that there are no quotation-marks in this case. This is because the variables are obtained within the shell command. If used outside the shell command (surrounded by the triple \"\"\"), you will need to use quotation marks as such: `config["settings"]["max_nbr_seqs"]`.
 
 ## Exercises:
 
@@ -247,22 +253,17 @@ Illustration of the workflow at this point (generated in exercise 3):
 
 # Step 3 - Multiple input files
 
-Now, you have seen how we can run multiple rules for one input file. More commonly, we have multiple input files. Let's calculate these stats for all the available files.
+Now, you have seen how we can run multiple rules for one input file. More commonly, we have multiple input files. Let's see how to run the rules for three files, and in parallel calculate the GC-values for their sequences.
 
 Remember that Snakemake is written in Python, so you are free to use common Python code throughout the Snakemake scripts. The most straight-forward way to process multiple files is to include them in a Python list, and then use the command `expand` to tell the Snakemake rules to look for all these file patterns.
 
 ```
-samples = [
-  data/21AL.A_R1,
-  data/21AL.A_R2,
-  data/21AL.B_R1,
-  data/21AL.B_R2
-]
+samples = [21AL.A_R1, MA.B.E_R1, MA.C.A_R1]
 ```
 
 This quickly becomes overwhelming if you run many samples, and a more general approach is desirable. Snakemake provides this through the function `glob_wildcards`.
 
-Here, Snakemake looks for sample names matching the pattern, and extracts the part of the file name not including 'fastq'.
+Here, Snakemake looks for sample names matching a pattern in the filenames, and extracts a specified part of the filename (in this case, corresponding to the sample-patterns stored in the previous example).
 
 ```
 samples = glob_wildcards("data/{sample}.fastq")
@@ -270,15 +271,17 @@ samples = glob_wildcards("data/{sample}.fastq")
 
 We can test this by adding a `print` statement on the second row `print(samples)`, and try running. Remember - we can use standard Python within the Snakemake workflow.
 
-Now we are ready to run. To make this work, we need to update the workflow in a few places.
+Now we are ready to run. For now, we use the smaller set of three file-names as this makes it easier to quickly re-run the workflow during development.
+
+Furthermore, we need to introduce a new concept to help snakemake understand how to handle the sample-names - the `expand` command and the `{...}` patterns in the sample names.
+
+Instead of explicitly writing out one sample-name in the rules as before, this is now replaced with the pattern `{sample}`. This will be assigned the different sample-names as specified by the `samples` list. To do this we use the `expand` command. Here, Snakemake will expand the list `samples` into the pattern `sample` and generate three different full file-paths: `output/2_summaries/21AL.A_R1.tsv`, `output/2_summaries/MA.B.E_R1.tsv` and `output/2_summaries/MA.C.A_R1.tsv`.
+
+Now, the command looks the following:
 
 ```
 configfile: "config.yaml"
-samples = [
-  data/21AL.A_R1,
-  data/21AL.A_R2,
-  data/21AL.B_R1
-]
+samples = [21AL.A_R1, MA.B.E_R1, MA.C.A_R1]
 
 rule all:
     input:
@@ -289,7 +292,10 @@ rule convert_fastq_to_fasta:
     output: "output/1_fasta/{sample}.fasta"
     shell:
         """
-        python3 scripts/fastq_to_fasta.py --input {input} --output {output} --max_entries {config[settings][max_nbr_seqs]}
+        python3 scripts/fastq_to_fasta.py \
+          --input {input} \
+          --output {output} \
+          --max_entries {config[settings][max_nbr_seqs]}
         """
 
 rule get_sequence_measures:
@@ -299,19 +305,22 @@ rule get_sequence_measures:
         out_fasta="output/2_summaries/{sample}.tsv"
     shell:
         """
-        python3 scripts/retrieve_fasta_stats.py --input {input.in_fasta} --output {output.out_fasta}
+        python3 scripts/retrieve_fasta_stats.py \
+          --input {input.in_fasta} \
+          --output {output.out_fasta}
         """
 ```
 
-We use the `expand` command in the `rule all`, which generates a list of output files for all patterns. Note also that the pattern `{sample}` is now used throughout the code to specify the target sample names part of each file name.
+Running it will generate the following graph.
 
 ![Workflow illustration, step 3](/post/2021-01-26-snakemake-a-friendly-introduction.en_files/step3_dag.svg)
 
 ## Exercise
 
-1. Try the list-syntax, and see if you can run only a subset of the samples.
-2. Try using the command `snakemake --dag | dot -Tsvg > dag.svg` to generate a graph which illustrates the different executed commands. Does the graph look like you expected?
-3. (Bonus) If you are proficient in Python, feel free to explore the `retrieve_fasta_stats` script, and calculate further stats for the FASTA-files!
+1. Try changing the list-syntax, and see if you can run two additional samples.
+2. Try the glob-syntax, and see if you can run all of the files.
+3. Try using the command `snakemake --dag | dot -Tsvg > dag.svg` to generate a graph which illustrates the different executed commands. Does the graph look like you expected?
+4. (Bonus) If you are proficient in Python, feel free to explore the `retrieve_fasta_stats` script, and calculate further stats for the FASTA-files!
 
 # Step 4 - Combining multiple files into one
 
