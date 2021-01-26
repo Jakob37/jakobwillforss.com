@@ -19,7 +19,7 @@ googleAnalytics = "UA-79220205-2"
 [params]
 title = "Hi! I'm Jakob"
 author = "Jakob Willforss"
-description = "I think about R, bioinformatics, everyday optimization and data intuition"
+description = "I build software, and think about bioinformatics and everyday optimizations"
 profilePicture = "images/profile.jpg"
 keywords = ""
 favicon = "favicons/"
